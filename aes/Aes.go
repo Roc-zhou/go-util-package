@@ -26,7 +26,7 @@ func Encrypt(key string, iv string, str string) (string, error) {
 	dCrypts := make([]byte, len(encodeStr))
 	//加密明文
 	blockMode.CryptBlocks(dCrypts, encodeStr)
-	return base64.URLEncoding.EncodeToString(dCrypts[:]), nil
+	return base64.StdEncoding.EncodeToString(dCrypts), nil
 }
 
 //补码
@@ -41,7 +41,7 @@ func PKCS7Padding(origData []byte, blockSize int) []byte {
 func Decrypt(key string, iv string, str string) (string, error) {
 	decodeKey := []byte(key)
 	decodeIv := []byte(iv)
-	strByte, err := base64.URLEncoding.DecodeString(str)
+	strByte, err := base64.StdEncoding.DecodeString(str)
 	if err != nil {
 		return "", err
 	}
