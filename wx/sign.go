@@ -10,7 +10,9 @@ import (
 )
 
 func WxSign(jsapi_ticket string, url string) map[string]interface{} {
+	// 生成随机16为字符串
 	nonceStr := str.CreateNonceStr(16)
+	// 时间戳
 	timestamp := strconv.Itoa(int(time.GetCurStamp()))
 	// 顺序必须有序
 	string1 := "jsapi_ticket=" + jsapi_ticket + "&noncestr=" + nonceStr + "&timestamp=" + timestamp + "&url=" + url
