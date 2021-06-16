@@ -5,23 +5,22 @@ import (
 	"testing"
 
 	"github.com/Roc-zhou/go-util-package/encrypt"
-	"github.com/Roc-zhou/go-util-package/mail"
 	"github.com/Roc-zhou/go-util-package/time"
 )
 
-func TestMail(t *testing.T) {
-	// 发送邮件
-	var params = &mail.Params{
-		Host:        "smtp.exmail.qq.com",
-		Port:        465,
-		Username:    "",
-		Password:    "",
-		GetMailUser: "1137938565@qq.com", // 收件人
-		MailTheme:   "服务错误",              // 邮件主题
-		Body:        "hello mail",        // 邮件正文
-	}
-	mail.Send(params)
-}
+// func TestMail(t *testing.T) {
+// 	// 发送邮件
+// 	var params = &mail.Params{
+// 		Host:        "smtp.exmail.qq.com",
+// 		Port:        465,
+// 		Username:    "",
+// 		Password:    "",
+// 		GetMailUser: "1137938565@qq.com", // 收件人
+// 		MailTheme:   "服务错误",              // 邮件主题
+// 		Body:        "hello mail",        // 邮件正文
+// 	}
+// 	mail.Send(params)
+// }
 
 func TestTime(t *testing.T) {
 	stamp1 := fmt.Sprintf("当前时间： %s", time.GetNow())
@@ -86,4 +85,12 @@ SEdoG2OMA8Tb4x+VeqnEOXAabpXlmudT4iC7Wf9yvAYhCUhTFK3/Rw==
 	// 私钥解密
 	plainText, _ := encrypt.PrivateRSADecrypt(cipherText, privateKey)
 	fmt.Println("原文：" + plainText)
+}
+
+func TestGetBase64(t *testing.T) {
+	s := encrypt.StringToBase64("this is a example")
+	fmt.Println(s)
+
+	m := encrypt.Base64ToString(s)
+	fmt.Println(m)
 }
